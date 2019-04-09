@@ -1,0 +1,306 @@
+<link href="css/bootstrap-table.css" rel="stylesheet" />
+<script src="js/bootstrap-table.js"></script>
+
+<section class="callaction" ng-init="displaymanifest()">
+	<div class="container">
+
+<div class="row">
+<div class="col-md-4">
+<span class="pull-right text-danger h3">
+Travelling and visiting can be fun but it comes with its own risk.<br><br> 
+WakaMate ensures you stay on top of the situation by allowing you leave a trace of your movement in case of an emergency.<br>
+<br>WakaMate is simply your personal travel and visiting manifest.</span>
+</div>
+
+<div class="col-xs-12 col-sm-7 col-md-6 col-sm-offset-1 col-md-offset-1">
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#travel">Travelling</a></li>
+  <li><a data-toggle="tab" href="#visit">Visiting</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="travel" class="tab-pane fade in active">
+    
+			<form id="travel-form">
+			<h2>Enter Your Travel Details </h2>
+			<hr class="colorgraph">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+                        Travelling From: <input type="text" id="from" name="from" class="form-control input-lg" placeholder="Travelling From" tabindex="1" required>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						Travelling To: <input type="text" id="to" name="to" class="form-control input-lg" placeholder="Travelling To" tabindex="2" required>
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						Number of Hours to spend: <input type="number" id="est" name="est" class="form-control input-lg" placeholder="Est Arrival Time" min="1" tabindex="3" required>
+					</div>
+				</div>
+			
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						Next of Kin: <input type="text" id="kin" name="kin" class="form-control input-lg" placeholder="Next of Kin" tabindex="4" required>
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						Next of Kin Phone Number: <input type="number" id="kingsm" name="kingsm" class="form-control input-lg" placeholder="Next of Kin Gsm" min="1" tabindex="5" required>
+					</div>
+				</div>
+			
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+                        Plate Number: <input type="text" id="number" name="number" class="form-control input-lg" placeholder="Car/Bus Plate Number" tabindex="6" required>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<input type="text" id="address" name="address" class="form-control input-lg" placeholder="Car Pack/Transport Company" tabindex="7" required> 
+					</div>
+				</div>
+			<input type="hidden" id="type" name="type" value="Travel">
+			<input type="hidden" id="action" name="action" value="insert">
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-lg-offset-4 col-md-4"><button type="submit" class="btn btn-theme btn-block btn-lg" id="travelme" name="travelme" tabindex="8">Submit</button></div>
+			</div>
+			</form>
+			
+  </div>
+  <div id="visit" class="tab-pane fade">
+  	<h2>Enter Your Visit Details </h2>
+
+			<hr class="colorgraph">
+ 			<form id="visit-form">
+ 				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+                    Going From: <input type="text" id="from" name="from" class="form-control input-lg" placeholder="Going From" tabindex="1">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+					Visiting:	<input type="text" id="to" name="to" class="form-control input-lg" placeholder="Host Name" tabindex="2">
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+					Number of Hours to Spend: <input type="number" id="est" name="est" class="form-control input-lg" placeholder="Est Time to Spend" min="1" tabindex="3">
+					</div>
+				</div>
+		
+					<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						Next of Kin: <input type="text" id="kin" name="kin" class="form-control input-lg" placeholder="Next of Kin" tabindex="4">
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						Next of Kin Phone Number: <input type="number" id="kingsm" name="kingsm" class="form-control input-lg" placeholder="Next of Kin Gsm" min="1" tabindex="5">
+					</div>
+				</div>
+			
+
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+                    Host Phone Number:    <input type="text" id="number" name="number" class="form-control input-lg" placeholder="Phone Number of Host" tabindex="7">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<input type="text" id="address" name="address" class="form-control input-lg" placeholder="Address of Host" tabindex="8">
+					</div>
+				</div>
+			
+			<input type="hidden" id="type" name="type" value="Visit">
+			<input type="hidden" id="action" name="action" value="insert">
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-lg-offset-4 col-md-4"><button type="submit" id="visitme" name="visitme" class="btn btn-theme btn-block btn-lg" tabindex="9">Submit</button></div>
+			</div>
+ 		</form>			
+  </div>
+ </div>
+		
+	</div>
+
+</div>
+
+	<!-- Modal -->
+<div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+			</div>
+			<div class="modal-body">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+</section>
+
+
+	<section id="content">
+		<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="text-center">
+					<h2>History</h2>					
+				</div>
+			</div>		
+		</div>
+		</div>
+		
+
+		
+<!--
+<a class="btn btn-primary ref" href="#">Refresh</a>
+-->
+	<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Personal Manifest</div>
+					<div class="panel-body">
+						<table id="travel-table" data-toggle="table" data-url="model/fetchmanifest.php"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						    <thead>
+						    <tr>
+						        <th>From</th>
+								<th>To</th>
+						        <th>Time Posted</th>
+								<th>Status</th>
+								<th>Panic</th>
+								<th>Checkout</th>
+								<th>Details</th>
+						    </tr>
+						    </thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+<div id="viewmanifest" class="modal fade">
+    <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">View Manifest</h4>
+            </div>
+            <div class="modal-body">
+			     <label><span class="h4" id="user_from"></span><br>
+ 			     <label><span class="h4" id="user_to"></span><br>
+				 <label><span class="h4" id="user_number"></span><br>
+				 <label><span class="h4" id="user_address"></span><br>
+				 <label><span class="h4" id="user_dateposted"></span><br>
+				 <label><span class="h4" id="user_datedepart"></span><br>
+				 <label><span class="h4" id="user_type"></span><br>
+		 		 <label><span class="h4" id="user_status"></span><br>
+				
+				</div>
+            <div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+	    </div>
+	</div>
+</div>
+
+
+
+
+<!--
+		<div class="container">
+		<div class="row">
+					<div class="table-responsive">
+					<table class="table">					    
+						    <tr>
+                            	<th>From</th>
+						        <th>To</th>
+								<th>Panic</th>
+								<th>Details</th>
+								<th>Checkout</th>
+								<th>Status</th>
+								<th>Type</th>
+								
+							</tr>
+							<tr ng-repeat="w in manifest">
+								<td>{{w.from_}}</td>	
+								<td>{{w.to_}}</td>
+								<td><button class="btn btn-danger" ng-click="Panic(w.id)">Panic</button></td>
+								<td><button class="btn btn-info" ng-click="ManifestView(w.from_,w.to_,w.number,w.address,w.dateposted,w.datedepart,w.status,w.type)">View</button></td>	
+								<td><button class="btn btn-info" ng-click="CheckoutManifest(w.id)">Checkout</button></td>	
+								<td>{{w.status}}</td>	
+								<td>{{w.type}}</td>	
+							</tr>
+						</table>
+		</div>
+		</div>
+-->		
+		
+	</section>
+
+
+	
+
+<!--
+<div class="col-lg-offset-4 col-lg-4 modal" id="msgmodal">
+<div class="alert alert-{{type}} alert-dismissible fade in" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  {{msg}}
+</div>
+</div>
+-->
+<!--
+<div id="viewManifest" class="modal fade">
+	 <div class="modal-dialog">
+        <form>
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">View Manifest Details</h4>
+            </div>
+            <div class="modal-body">
+                <h4>{{manifestme.from}}</h4>
+
+				<h4>{{manifestme.to}}</h4>
+
+				<h4>{{manifestme.number}}</h4>
+
+				<h4>{{manifestme.address}}</h4>
+
+				<h4>{{manifestme.dateposted}}</h4>
+
+				<h4>{{manifestme.datedepart}}</h4>
+
+				<h4>{{manifestme.status}}</h4>
+
+				<h4>{{manifestme.type}}</h4>
+
+                
+				</div>
+            	<div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+		 </div>
+
+        </form>
+
+    </div>
+
+</div>
+-->
+

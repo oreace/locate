@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="admin_app">
+<head>
+	<base href="/CivicHub/locate/admin/" />
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body ng-controller="admin_controller">
+<div ng-show="isLoggedIn">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><span>Locate</span>Admin</a>
+				</div>
+							
+		</div><!-- /.container-fluid -->
+	</nav>
+		
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<ul class="nav menu">
+			<li><a href="dashboard"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+			<li><a href="members"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Members</a></li>
+			<li><a href="missing"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Missing</a></li>
+			<li><a href="manifest"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Manifest</a></li>
+			<li><a href="volunteers"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Volunteers</a></li>
+			<li role="presentation" class="divider"></li>
+			<li><a href="" ng-click="logout()"><svg class="glyph stroked lock"><use xlink:href="#stroked-lock"></use></svg> Logout</a></li>
+		</ul>
+		</div><!--/.sidebar-->
+		</div>
+	<div ng-view>
+
+
+	</div>
+		
+
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	
+	<script src="js/angular.min.new.js"></script>
+	<script src="js/angular-route.js"></script>
+	<script src="controllers/adminapp.js"></script>
+	<script src="controllers/adminconfig.js"></script>
+	<script src="controllers/adminservices.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
+	<script>
+		!function ($) {
+			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
+				$(this).find('em:first').toggleClass("glyphicon-minus");	  
+			}); 
+			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+		}(window.jQuery);
+
+		$(window).on('resize', function () {
+		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function () {
+		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+		})
+	</script>
+</body>
+
+</html>
+
+<div id="mailModal" class="modal fade">
+    <div class="modal-dialog">
+		<form method="post" id="mail_form">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Send Mail</h4>
+            </div>
+            <div class="modal-body">
+        	    <label>Subject</label>
+				<input class="form-control" placeholder="Enter Subject Here" name='mail_sub' id='mail_sub'/>
+		     
+			    <label>Message</label>
+				<textarea class="form-control" placeholder="Enter Message Here" rows="20" name='mail_msg' id='mail_msg'></textarea>
+			   </div>
+            <div class="modal-footer">
+            <input type="hidden" name="action" id="action" value="sendmail"/>
+			
+            <input type="submit" class="btn btn-success" value="Send"/>
+            </div>
+			</div>
+	    </form>
+	 </div>
+</div>

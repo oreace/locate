@@ -1,0 +1,259 @@
+<html lang="en" ng-app="locate_app">
+<head>
+<base href="/CivicHub/locate/" />
+<meta charset="utf-8">
+<title>Locate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" />
+<link id="t-colors" href="skins/default.css" rel="stylesheet" />
+<link id="bodybg" href="bodybg/bg1.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body ng-controller="locate_controller">
+
+<div id="wrapper">
+
+<header>
+	<div class="modal fade" id="login">
+		<div class="modal-dialog">
+			<div class="modal-content" >
+				<div class="modal-header" id="login2">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">Sign in <small>manage your account</small></h4>
+				</div>
+				<div class="modal-body">
+			<form role="form" class="register-form">
+				<div class="form-group">
+					<input type="text" ng-model="login.email" class="form-control input-lg" placeholder="Email Address" tabindex="1">
+				</div>
+				<div class="form-group">
+					<input type="password" ng-model="login.password" class="form-control input-lg" placeholder="Password" tabindex="2">
+				</div>
+
+				<div class="row">
+					<div class="col-xs-4 col-sm-3 col-md-3">
+						<span class="form-group">
+							<label>Remember me</label>
+							<input type="checkbox" ng-model="login.rem" tabindex="3">
+						</span>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 col-md-6">Don't have an account? <a href="#" data-toggle="modal" data-target="#register">Register</a></div>
+				</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" ng-click="loginme()">Login</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</form>	
+<form enctype="multipart/form-data">
+	<div class="modal fade" id="register">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">Register <small>its free</small></h4>
+				</div>
+				<div class="modal-body">
+				<div class="form-group">
+					<input type="text" ng-model="register.name" class="form-control" placeholder="Full Name" tabindex="1" required>
+				</div>
+
+				<div class="form-group">
+					<input type="email" ng-model="register.email" class="form-control" placeholder="Email Address" tabindex="2" required>
+				</div>
+
+				<div class="form-group">
+					<input type="number" ng-model="register.gsm" class="form-control" placeholder="Phone Number" tabindex="3" required>
+				</div>
+<!--
+				<div class="form-group">
+					Picture
+					<input type="file" accept="images/*" file-model="register.file" class="form-control input-lg" tabindex="4">
+				</div>
+-->
+				<div class="form-group">
+					<select class="form-control" ng-model="register.state" id="state" tabindex="4" required>
+					<option>Select a State</option>				
+					</select> 
+				</div>
+
+			
+				<div class="form-group">
+			
+					<select class="form-control" ng-model="register.address" id="lga" tabindex="5" required>
+					<option>Select a Local Government Area</option>				
+					</select> 
+		
+				</div>
+
+				<div class="form-group">
+					<input type="password" class="form-control" ng-model="register.password" placeholder="Password" required>
+				</div>
+
+				<div class="form-group">
+					<input type="password" class="form-control" ng-model="register.cpassword" placeholder="Retype Password" required>
+				</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" ng-click="registerme()">Register</button>
+				</div>
+		
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</form>
+	<!-- menu bar -->
+	<div class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="" width="199" height="52" /></a>
+			</div>
+			<div class="navbar-collapse collapse ">
+				<ul class="nav navbar-nav">
+					<li><a href="home">Home</a></li>
+					<li><a href="missing">Missing Person</a></li>
+					<li><a href="travel">WakaMate</a></li>
+					<!-- <li><a href="blog">Blog</a></li> -->
+					<li><a href="contact">Contact</a></li>
+					<li  ng-hide="isLoggedIn"><a href="#" data-toggle="modal" data-target="#login">Login/Register</a></li>
+					<li  ng-show="isLoggedIn"><a href="" ng-click="logout()">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</div><!-- /menu bar -->
+</header>
+
+	<div ng-view>
+		
+	</div>
+
+<!--
+<div class="container">
+				<div class="row">
+								<div class="col-xs-6 col-md-2 aligncenter client">
+									<img alt="logo" src="img/clients/logo1.png" class="img-responsive" />
+								</div>											
+													
+								<div class="col-xs-6 col-md-2 aligncenter client">
+									<img alt="logo" src="img/clients/logo2.png" class="img-responsive" />
+								</div>											
+													
+								<div class="col-xs-6 col-md-2 aligncenter client">
+									<img alt="logo" src="img/clients/logo3.png" class="img-responsive" />
+								</div>											
+													
+								<div class="col-xs-6 col-md-2 aligncenter client">
+									<img alt="logo" src="img/clients/logo4.png" class="img-responsive" />
+								</div>									
+								
+								<div class="col-xs-6 col-md-2 aligncenter client">
+									<img alt="logo" src="img/clients/logo5.png" class="img-responsive" />
+								</div>									
+								<div class="col-xs-6 col-md-2 aligncenter client">
+									<img alt="logo" src="img/clients/logo6.png" class="img-responsive" />
+								</div>	
+
+				</div>
+		</div>
+-->
+<!--success -->
+<div class="col-lg-offset-4 col-lg-4 modal" id="msgmodal">
+<div class="alert alert-{{type}} alert-dismissible fade in" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  {{msg}}
+</div>
+</div>
+
+
+<footer>
+	<div id="sub-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="copyright">
+						<p>&copy; Locate - All Right Reserved</p>
+                 	</div>
+				</div>
+				<div class="col-lg-6">
+					<ul class="social-network">
+						<li><a href="https://facebook.com/LocateNigeria" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/LocateNigeria" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="copyright">
+		Disclaimer: Locate is NOT a Law enforcement agency and does not monitor criminal activities, make arrests or investigate crimes. Locate is a crowd sourcing platform that allows people to easily report a missing person, while it leverages on the use of social media to instantly engage citizens to help in a search for the missing. Nothing on this website constitutes or creates a Law enforcement-citizen relationship. Please contact your Local Police station first to report cases of missing persons as it will be required to activate a CitiSearch.
+		</div>
+	</div>
+	
+</footer>
+</div>
+
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js"></script>
+
+<script src="js/angular.min.new.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="controllers/app.js"></script>
+<script src="controllers/config.js"></script>
+<script src="controllers/services.js"></script>
+<script src="js/google-code-prettify/prettify.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+loadstate();	
+</script>
+
+</body>
+</html>
+
+<!-----------  
+<div id="missingModal" class="modal fade">
+    <div class="modal-dialog">
+        <form id="user_form">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Missing Person From</h4>
+            </div>
+            <div class="modal-body">
+                <label>Enter Name</label>
+                <input type="text" ng-model="missing.name" class="form-control" required/>
+
+                <label>Day Missing</label>
+                <input type="text" ng-model="missing.day" class="form-control" placeholder="YYYY-MM-DD, Year-Month-Day" required/>
+
+				<label>Any Other Information (Optional)</label>
+                <textarea ng-model="missing.info" class="form-control"></textarea>
+
+                <label>Upload Image</label>
+                <input type="file" file-model="missing.file" class="form-control" accept="image/*" required/>
+            </div>
+            <div class="modal-footer">
+			<button type="button" class="btn btn-primary" ng-click="missingme()">Upload</button>
+		    </div>
+
+        </form>
+
+    </div>
+
+</div>
+-->
